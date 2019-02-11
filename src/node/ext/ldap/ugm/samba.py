@@ -41,16 +41,16 @@ sambaGroupMapping
 - sambaSIDList ------------> no default callback available
 """
 from node.ext.ldap.ugm import posix
-import smbpasswd
+import passlib.hash
 import time
 
 
 def sambaNTPassword(passwd):
-    return smbpasswd.nthash(passwd)
+    return passlib.hash.nthash.encrypt(passwd).upper()
 
 
 def sambaLMPassword(passwd):
-    return smbpasswd.lmhash(passwd)
+    return passlib.hash.lmhash.encrypt(passwd).upper()
 
 
 # net getlocalsid | net getlocalsid [domain]
